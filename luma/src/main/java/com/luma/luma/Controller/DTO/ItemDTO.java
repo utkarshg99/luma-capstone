@@ -7,8 +7,6 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ItemDTO {
-    @NonNull
-    private String id;
     private String description;
     private char status;
     private String make;

@@ -1,9 +1,13 @@
 package com.luma.luma.Model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.luma.luma.Utility.StringPrefixedSequenceIdGenerator;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
 import javax.persistence.*;
 import java.util.List;
@@ -17,7 +21,14 @@ import java.util.List;
 public class Item {
 
     @Id
-    @Column(name = "item_id", nullable = false, length = 6)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "item_seq")
+    @GenericGenerator(
+            name = "item_seq",
+            strategy = "com.luma.luma.Utility.StringPrefixedSequenceIdGenerator",
+            parameters = {
+                    @Parameter(name = StringPrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "I"),
+                    @Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d") })
+    @Column(name = "item_id")
     private String id;
 
     @Column(name = "item_description", length = 25)
@@ -35,6 +46,7 @@ public class Item {
     @Column(name = "item_valuation", length = 6, columnDefinition = "INT")
     private int valuation;
 
-    @OneToMany(mappedBy = "i_id")
+    @JsonManagedReference
+    @OneToMany(mappedBy = "iid")
     private List<Issue> issues;
 }

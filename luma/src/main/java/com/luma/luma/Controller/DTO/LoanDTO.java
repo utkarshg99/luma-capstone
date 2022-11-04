@@ -7,8 +7,6 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LoanDTO {
-    @NonNull
-    private String id;
     private String type;
     private int duration;
 }

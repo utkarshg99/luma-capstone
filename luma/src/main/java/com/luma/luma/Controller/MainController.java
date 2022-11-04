@@ -1,14 +1,18 @@
 package com.luma.luma.Controller;
 
-import com.luma.luma.Controller.DTO.EmployeeDTO;
-import com.luma.luma.Controller.DTO.ItemDTO;
-import com.luma.luma.Controller.DTO.LoanDTO;
+import com.luma.luma.Controller.DTO.*;
 import com.luma.luma.Model.*;
 import com.luma.luma.Repository.*;
+import com.luma.luma.Service.CreateTransaction;
+import com.luma.luma.Service.GetItems;
+import com.luma.luma.Service.GetLoans;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.*;
 
 @Controller
 @RequestMapping("/")
@@ -21,10 +25,13 @@ public class MainController {
     final ItemRepository itemRepository;
     final LoanRepository loanRepository;
 
+    final CreateTransaction createTransaction;
+    final GetLoans getLoans;
+    final GetItems getItems;
+
     @PostMapping(path = "/add/employee")
     public @ResponseBody String addNewEmployee (@RequestBody EmployeeDTO new_employee){
         Employee emp = new Employee();
-        emp.setId(new_employee.getId());
         emp.setName(new_employee.getName());
         emp.setDesignation(new_employee.getDesignation());
         emp.setDepartment(new_employee.getDepartment());
@@ -38,7 +45,6 @@ public class MainController {
     @PostMapping(path = "/add/item")
     public @ResponseBody String addNewItem (@RequestBody ItemDTO new_item){
         Item item = new Item();
-        item.setId(new_item.getId());
         item.setMake(new_item.getMake());
         item.setCategory(new_item.getCategory());
         item.setStatus(new_item.getStatus());
@@ -51,11 +57,35 @@ public class MainController {
     @PostMapping(path = "/add/loan")
     public @ResponseBody String addNewLoan (@RequestBody LoanDTO new_loan){
         Loan loan = new Loan();
-        loan.setId(new_loan.getId());
         loan.setType(new_loan.getType());
         loan.setDuration(new_loan.getDuration());
         loanRepository.save(loan);
         return "Loan Saved";
+    }
+
+    @PostMapping(path = "/card_issue")
+    public @ResponseBody ResponseEntity<String> addNewIssue (@RequestBody IssueDTO new_issue){
+        int val = createTransaction.createTransaction(new_issue);
+        int status = (val == 200) ? 200 : 404;
+        String body = "";
+        switch(val){
+            case 1: body = "Employee not found."; break;
+            case 2: body = "Item not found."; break;
+            case 200: body = "Issue and Card Saved."; break;
+        }
+        return ResponseEntity.status(status).body(body);
+    }
+
+    @PostMapping(path="/loans")
+    public @ResponseBody Set<Loan> getLoansByEmployeeId(@RequestBody LoanEmployeeDTO eid) {
+        Set<Loan> loans = getLoans.getLoans(eid.getEid());
+        return loans;
+    }
+
+    @PostMapping(path="/items")
+    public @ResponseBody List<Item> getItemsByEmployeeId(@RequestBody ItemEmployeeDTO eid) {
+        List<Item> items = getItems.getItems(eid.getEid());
+        return items;
     }
 
     @GetMapping(path="/all/card")

@@ -1,6 +1,5 @@
 [
     {
-        "id": "E00001",
         "name": "LUMA",
         "designation": "Project-1",
         "department": "Capstone-1",
@@ -9,7 +8,6 @@
         "doj": "04-11-2022"
     },
     {
-        "id": "E00002",
         "name": "UMAL",
         "designation": "Project-2",
         "department": "Capstone-2",
@@ -18,7 +16,6 @@
         "doj": "04-11-2023"
     },
     {
-        "id": "E00003",
         "name": "MALU",
         "designation": "Project-3",
         "department": "Capstone-3",
@@ -27,7 +24,6 @@
         "doj": "04-11-2024"
     },
     {
-        "id": "E00004",
         "name": "ALUM",
         "designation": "Project-4",
         "department": "Capstone-4",

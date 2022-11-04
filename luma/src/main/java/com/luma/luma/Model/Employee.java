@@ -1,13 +1,18 @@
 package com.luma.luma.Model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.luma.luma.Utility.StringPrefixedSequenceIdGenerator;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+
 
 @Getter
 @Setter
@@ -18,7 +23,14 @@ import java.util.List;
 public class Employee {
 
     @Id
-    @Column(name = "employee_id", nullable = false, length = 6)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employee_seq")
+    @GenericGenerator(
+            name = "employee_seq",
+            strategy = "com.luma.luma.Utility.StringPrefixedSequenceIdGenerator",
+            parameters = {
+                    @Parameter(name = StringPrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "E"),
+                    @Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d") })
+    @Column(name = "employee_id")
     private String id;
 
     @Column(name = "employee_name", length = 20)
@@ -41,9 +53,11 @@ public class Employee {
     @Temporal(TemporalType.DATE)
     private Date doj;
 
-    @OneToMany(mappedBy = "e_id")
+    @JsonManagedReference
+    @OneToMany(mappedBy = "eid")
     private List<Issue> issues;
 
-    @OneToMany(mappedBy = "e_id")
+    @JsonManagedReference
+    @OneToMany(mappedBy = "eid")
     private List<Card> cards;
 }

@@ -1,21 +1,17 @@
 [
     {
-        "id": "L00001",
         "type": "Furniture",
         "duration": 1
     },
     {
-        "id": "L00002",
         "type": "Electronics",
         "duration": 2
     },
     {
-        "id": "L00003",
         "type": "Utility",
         "duration": 3
     },
     {
-        "id": "L00004",
         "type": "Software",
         "duration": 5
     }

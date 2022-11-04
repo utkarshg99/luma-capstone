@@ -1,9 +1,13 @@
 package com.luma.luma.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.luma.luma.Utility.StringPrefixedSequenceIdGenerator;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -17,18 +21,28 @@ import java.util.Date;
 public class Issue {
 
     @Id
-    @Column(name = "issue_id", nullable = false, length = 6)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "issue_seq")
+    @GenericGenerator(
+            name = "issue_seq",
+            strategy = "com.luma.luma.Utility.StringPrefixedSequenceIdGenerator",
+            parameters = {
+                    @Parameter(name = StringPrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "I"),
+                    @Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d") })
+    @Column(name = "issue_id")
     private String id;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "employee_id")
-    private Employee e_id;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "item_id")
-    private Item i_id;
 
     @Column(name = "issue_date", columnDefinition = "DATE")
     @Temporal(TemporalType.DATE)
-    private Date issue_date;
+    private Date issueDate;
+
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "employee_id")
+    private Employee eid;
+
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "item_id")
+    private Item iid;
+
 }

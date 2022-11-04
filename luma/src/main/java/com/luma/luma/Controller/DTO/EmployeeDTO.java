@@ -10,8 +10,6 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EmployeeDTO {
-    @NonNull
-    private String id;
     private String name;
     private String designation;
     private String department;
