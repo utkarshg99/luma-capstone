@@ -16,6 +16,10 @@ import java.util.Date;
 @Table(name = "employee_card_details")
 public class Card {
 
+    @Id
+    @Column(name = "card_id", nullable = false, length = 6)
+    private String id;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_id")
     private Employee e_id;

@@ -1,0 +1,38 @@
+[
+    {
+        "id": "E00001",
+        "name": "LUMA",
+        "designation": "Project-1",
+        "department": "Capstone-1",
+        "gender": "M",
+        "dob": "03-11-2022",
+        "doj": "04-11-2022"
+    },
+    {
+        "id": "E00002",
+        "name": "UMAL",
+        "designation": "Project-2",
+        "department": "Capstone-2",
+        "gender": "F",
+        "dob": "03-11-2023",
+        "doj": "04-11-2023"
+    },
+    {
+        "id": "E00003",
+        "name": "MALU",
+        "designation": "Project-3",
+        "department": "Capstone-3",
+        "gender": "M",
+        "dob": "03-11-2024",
+        "doj": "04-11-2024"
+    },
+    {
+        "id": "E00004",
+        "name": "ALUM",
+        "designation": "Project-4",
+        "department": "Capstone-4",
+        "gender": "F",
+        "dob": "03-11-2025",
+        "doj": "04-11-2025"
+    }
+]
