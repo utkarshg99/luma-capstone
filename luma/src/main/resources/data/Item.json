@@ -1,0 +1,90 @@
+[
+    {
+        "id": "I00001",
+        "description": "Furniture 1",
+        "status": "T",
+        "make": "Make 1",
+        "category": "Furniture",
+        "valuation": 10000
+    },
+    {
+        "id": "I00002",
+        "description": "Furniture 2",
+        "status": "F",
+        "make": "Make 2",
+        "category": "Furniture",
+        "valuation": 20000
+    },
+    {
+        "id": "I00003",
+        "description": "Furniture 3",
+        "status": "T",
+        "make": "Make 3",
+        "category": "Furniture",
+        "valuation": 30000
+    },
+    {
+        "id": "I00004",
+        "description": "Electronics 1",
+        "status": "T",
+        "make": "Make 1",
+        "category": "Electronics",
+        "valuation": 100000
+    },
+    {
+        "id": "I00005",
+        "description": "Electronics 2",
+        "status": "T",
+        "make": "Make 2",
+        "category": "Electronics",
+        "valuation": 200000
+    },
+    {
+        "id": "I00006",
+        "description": "Electronics 3",
+        "status": "F",
+        "make": "Make 3",
+        "category": "Electronics",
+        "valuation": 300000
+    },
+    {
+        "id": "I00007",
+        "description": "Utility 1",
+        "status": "F",
+        "make": "Make 1",
+        "category": "Utility",
+        "valuation": 1000
+    },
+    {
+        "id": "I00008",
+        "description": "Utility 2",
+        "status": "T",
+        "make": "Make 2",
+        "category": "Utility",
+        "valuation": 2000
+    },
+    {
+        "id": "I00009",
+        "description": "Utility 3",
+        "status": "T",
+        "make": "Make 3",
+        "category": "Utility",
+        "valuation": 3000
+    },
+    {
+        "id": "I00010",
+        "description": "Windows",
+        "status": "T",
+        "make": "Make 4",
+        "category": "Software",
+        "valuation": 12345
+    },
+    {
+        "id": "I00011",
+        "description": "Linux",
+        "status": "T",
+        "make": "Make 5",
+        "category": "Software",
+        "valuation": 0
+    }
+]
