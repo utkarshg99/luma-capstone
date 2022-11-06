@@ -22,7 +22,14 @@ def loadLoan():
         ret = requests.post(BASE_URL+"/add/loan", json= loan, auth= CREDS)
         print(ret.text)
 
+def addCards():
+    data = json.load(open('AddLoans.json'))
+    for a_c in data:
+        ret = requests.post(BASE_URL+"/card_issue", json= a_c, auth= CREDS)
+        print(ret.text)
+
 if __name__ == "__main__":
     loadEmployee()
     loadItem()
     loadLoan()
+    addCards()

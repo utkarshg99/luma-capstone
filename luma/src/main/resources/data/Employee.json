@@ -5,7 +5,8 @@
         "department": "Capstone-1",
         "gender": "M",
         "dob": "03-11-2022",
-        "doj": "04-11-2022"
+        "doj": "04-11-2022",
+        "password": "LUMA_password"
     },
     {
         "name": "UMAL",
@@ -13,7 +14,8 @@
         "department": "Capstone-2",
         "gender": "F",
         "dob": "03-11-2023",
-        "doj": "04-11-2023"
+        "doj": "04-11-2023",
+        "password": "UMAL_password"
     },
     {
         "name": "MALU",
@@ -21,7 +23,8 @@
         "department": "Capstone-3",
         "gender": "M",
         "dob": "03-11-2024",
-        "doj": "04-11-2024"
+        "doj": "04-11-2024",
+        "password": "MALU_password"
     },
     {
         "name": "ALUM",
@@ -29,6 +32,7 @@
         "department": "Capstone-4",
         "gender": "F",
         "dob": "03-11-2025",
-        "doj": "04-11-2025"
+        "doj": "04-11-2025",
+        "password": "ALUM_password"
     }
 ]

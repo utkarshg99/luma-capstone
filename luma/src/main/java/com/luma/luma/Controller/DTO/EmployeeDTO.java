@@ -13,6 +13,7 @@ public class EmployeeDTO {
     private String name;
     private String designation;
     private String department;
+    private String password;
     private char gender;
     @JsonFormat(pattern = "dd-MM-yyyy")
     private Date dob;

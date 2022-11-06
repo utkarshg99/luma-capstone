@@ -24,6 +24,7 @@ public class MainController {
     final IssueRepository issueRepository;
     final ItemRepository itemRepository;
     final LoanRepository loanRepository;
+    final UserRepository userRepository;
 
     final CreateTransaction createTransaction;
     final GetLoans getLoans;
@@ -39,6 +40,12 @@ public class MainController {
         emp.setDob(new_employee.getDob());
         emp.setGender(new_employee.getGender());
         employeeRepository.save(emp);
+
+        User user = new User();
+        user.setEid(emp);
+        user.setPassword(new_employee.getPassword());
+        userRepository.save(user);
+
         return "Employee Saved";
     }
 
@@ -111,6 +118,11 @@ public class MainController {
     @GetMapping(path="/all/loan")
     public @ResponseBody Iterable<Loan> getAllLoans(){
         return loanRepository.findAll();
+    }
+
+    @GetMapping(path="/all/user")
+    public @ResponseBody Iterable<User> getAllUsers(){
+        return userRepository.findAll();
     }
 
 }

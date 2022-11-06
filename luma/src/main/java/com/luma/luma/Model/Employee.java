@@ -53,6 +53,11 @@ public class Employee {
     @Temporal(TemporalType.DATE)
     private Date doj;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    @JsonManagedReference
+    private User user;
+
     @JsonManagedReference
     @OneToMany(mappedBy = "eid")
     private List<Issue> issues;
