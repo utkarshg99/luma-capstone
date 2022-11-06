@@ -16,7 +16,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": \"E001\",\r\n    \"name\": \"LUMA\",\r\n    \"designation\": \"Project\",\r\n    \"department\": \"Capstone\",\r\n    \"gender\": \"M\",\r\n    \"dob\": \"03-11-2022\",\r\n    \"doj\": \"04-11-2022\"\r\n}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -48,7 +48,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": \"E001\",\r\n    \"name\": \"LUMA\",\r\n    \"designation\": \"Project\",\r\n    \"department\": \"Capstone\",\r\n    \"gender\": \"M\",\r\n    \"dob\": \"03-11-2022\",\r\n    \"doj\": \"04-11-2022\"\r\n}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -80,7 +80,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": \"E001\",\r\n    \"name\": \"LUMA\",\r\n    \"designation\": \"Project\",\r\n    \"department\": \"Capstone\",\r\n    \"gender\": \"M\",\r\n    \"dob\": \"03-11-2022\",\r\n    \"doj\": \"04-11-2022\"\r\n}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -112,7 +112,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": \"E001\",\r\n    \"name\": \"LUMA\",\r\n    \"designation\": \"Project\",\r\n    \"department\": \"Capstone\",\r\n    \"gender\": \"M\",\r\n    \"dob\": \"03-11-2022\",\r\n    \"doj\": \"04-11-2022\"\r\n}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -144,7 +144,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": \"E001\",\r\n    \"name\": \"LUMA\",\r\n    \"designation\": \"Project\",\r\n    \"department\": \"Capstone\",\r\n    \"gender\": \"M\",\r\n    \"dob\": \"03-11-2022\",\r\n    \"doj\": \"04-11-2022\"\r\n}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
