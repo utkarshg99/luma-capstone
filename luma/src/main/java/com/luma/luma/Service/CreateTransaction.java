@@ -41,6 +41,10 @@ public class CreateTransaction {
         issueRepository.save(issue);
 
         Card card = new Card();
+        CardId cardid = new CardId();
+        cardid.setEid(emp.getId());
+        cardid.setLid(loan.getId());
+        card.setCardid(cardid);
         card.setEid(emp);
         card.setLid(loan);
         card.setCid(Date.from(Instant.now()));
