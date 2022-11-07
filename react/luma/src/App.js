@@ -15,7 +15,7 @@ function App() {
                 <div className={'d-flex'}>
                     <Link className={'btn'} to={'/'}><h3>Dashboard</h3></Link>
                     <div className={'mt-2'}>
-                        <Link className={'btn'} to={'/loans'} activeClassName = "active" >View Loans</Link>
+                        <Link className={'btn'} to={'/loans'} >View Loans</Link>
                         <Link className={'btn'} to={'/apply'}>Apply Loans</Link>
                         <Link className={'btn'} to={'/items'}>View Items Purchased</Link>
                     </div>
