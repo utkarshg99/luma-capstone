@@ -167,13 +167,45 @@
 			"response": []
 		},
 		{
+			"name": "View User",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/all/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"all",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Add Employee",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"LUMAX\",\r\n    \"designation\": \"Project\",\r\n    \"department\": \"Capstone\",\r\n    \"gender\": \"M\",\r\n    \"dob\": \"03-11-2022\",\r\n    \"doj\": \"04-11-2022\"\r\n}",
+					"raw": "{\r\n    \"name\": \"LUMAX\",\r\n    \"designation\": \"Project\",\r\n    \"department\": \"Capstone\",\r\n    \"gender\": \"M\",\r\n    \"dob\": \"03-11-2022\",\r\n    \"doj\": \"04-11-2022\",\r\n    \"password\": \"LUMAX_password\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -260,7 +292,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"eid\": \"E00002\",\r\n    \"iid\": \"I00002\"\r\n}",
+					"raw": "{\r\n    \"eid\": \"E00003\",\r\n    \"iid\": \"I00009\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -338,21 +370,6 @@
 			"response": []
 		}
 	],
-	"auth": {
-		"type": "basic",
-		"basic": [
-			{
-				"key": "username",
-				"value": "root",
-				"type": "string"
-			},
-			{
-				"key": "password",
-				"value": "luma@123",
-				"type": "string"
-			}
-		]
-	},
 	"event": [
 		{
 			"listen": "prerequest",
