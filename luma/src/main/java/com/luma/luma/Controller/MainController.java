@@ -4,7 +4,7 @@ import com.luma.luma.Controller.DTO.*;
 import com.luma.luma.Model.*;
 import com.luma.luma.Repository.*;
 import com.luma.luma.Service.CreateTransaction;
-import com.luma.luma.Service.GetItems;
+import com.luma.luma.Service.GetIssueItems;
 import com.luma.luma.Service.GetLoans;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +17,7 @@ import java.util.*;
 
 @Controller
 @RequestMapping("/")
+@CrossOrigin(origins = {"localhost:8080"})
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class MainController {
 
@@ -29,7 +30,7 @@ public class MainController {
 
     final CreateTransaction createTransaction;
     final GetLoans getLoans;
-    final GetItems getItems;
+    final GetIssueItems getIssueItems;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -94,8 +95,8 @@ public class MainController {
     }
 
     @PostMapping(path="/items")
-    public @ResponseBody List<Item> getItemsByEmployeeId(@RequestBody ItemEmployeeDTO eid) {
-        List<Item> items = getItems.getItems(eid.getEid());
+    public @ResponseBody List<ItemIssueDTO> getItemsByEmployeeId(@RequestBody ItemEmployeeDTO eid) {
+        List<ItemIssueDTO> items = getIssueItems.getItems(eid.getEid());
         return items;
     }
 
