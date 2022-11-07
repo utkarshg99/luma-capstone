@@ -1,35 +1,35 @@
 import './App.css';
 import Login from './components/Login';
-import {CardDisplay} from "./components/cardDisplay";
 import {LMApplication} from "./components/LoanManagementApplication";
 import {Dashboard} from "./components/Dashboard";
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom'
+import {LoanCardDisplay} from "./components/loanCardDisplay";
+import {ItemsPurchasedDisplay} from "./components/itemsPurchasedDisplay";
+import {Error} from "./components/error";
 
 
 function App() {
-
-
-  // const [user, setUser] = useState({email:"", password:""});
-    const loanCardData = {title: 'Loans Cards Active',
-        headers: ['Loan id','Loan Type','Duration','Card Issue Date'],
-        entries: [{cardId: 'C10001', type: 'Furnature', duration: 5,issueDate: '2022-01-01'}]
-    };
-    const itemPurchaseData = {title: 'Items Purchased',
-        headers: ['Issue id','Description','Item Make','Item Category','Item Valuation'],
-        entries: [{issueId: 'C10001',description: 'tea table', make: 'Furnature', category: 'Furniture',valuation: '2022-01-01'}]
-    };
-
     return (
-        <Router>
-          <Routes>
-            <Route index path={'/'} element={<Dashboard />} />
-            <Route path={'/login'} element={<Login />} />
-            <Route path={'/apply'} element={<LMApplication />} />
-            <Route path={'/loans'} element={<CardDisplay cardData={loanCardData} />} />
-            <Route path={'/items'} element={<CardDisplay cardData={itemPurchaseData} />} />
-          </Routes>
-        </Router>
-
+        <>
+            <Router>
+                <div className={'d-flex'}>
+                    <Link className={'btn'} to={'/'}><h3>Dashboard</h3></Link>
+                    <div className={'mt-2'}>
+                        <Link className={'btn'} to={'/loans'} activeClassName = "active" >View Loans</Link>
+                        <Link className={'btn'} to={'/apply'}>Apply Loans</Link>
+                        <Link className={'btn'} to={'/items'}>View Items Purchased</Link>
+                    </div>
+                </div>
+              <Routes>
+                <Route path={'/'} element={<Dashboard />} />
+                <Route index path={'/login'} element={<Login />} />
+                <Route path={'/apply'} element={<LMApplication />} />
+                <Route path={'/loans'} element={<LoanCardDisplay/>} />
+                <Route path={'/items'} element={<ItemsPurchasedDisplay />} />
+                <Route path={'*'} element= {<Error error={{errstatus: 404,message: 'Page not found'}}/>} />
+              </Routes>
+            </Router>
+        </>
   );
 }
 

@@ -1,11 +1,16 @@
 import React from 'react'
 import { useForm } from "react-hook-form";
+import {loginService} from "../service/loginService";
+import {redirect} from 'react-router-dom';
 
 function Login() {
     const {register, handleSubmit, formState: { errors }} = useForm();
-    const onSubmit = (data)=>{
+    const onSubmit = async (data)=>{
         console.log(errors);
         console.log(data);
+        let loginPromise = await loginService(data);
+        console.log(loginPromise.status);
+        redirect('/')
     }
     const validateEmpId = (value)=> value.toString().substring(0,1).toLowerCase() === 'e' && !isNaN(value.toString().substring(1));
   return (
