@@ -9,6 +9,7 @@ import com.luma.luma.Service.GetLoans;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,6 +31,9 @@ public class MainController {
     final GetLoans getLoans;
     final GetItems getItems;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @PostMapping(path = "/add/employee")
     public @ResponseBody String addNewEmployee (@RequestBody EmployeeDTO new_employee){
         Employee emp = new Employee();
@@ -43,7 +47,7 @@ public class MainController {
 
         User user = new User();
         user.setEid(emp);
-        user.setPassword(new_employee.getPassword());
+        user.setPassword(passwordEncoder.encode(new_employee.getPassword()));
         userRepository.save(user);
 
         return "Employee Saved";
@@ -121,8 +125,9 @@ public class MainController {
     }
 
     @GetMapping(path="/all/user")
-    public @ResponseBody Iterable<User> getAllUsers(){
-        return userRepository.findAll();
-    }
+    public @ResponseBody Iterable<User> getAllUsers(){ return userRepository.findAll(); }
+
+//    @GetMapping(path="/login")
+//    public String login() { return "login.html"; }
 
 }

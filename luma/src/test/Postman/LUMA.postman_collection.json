@@ -368,8 +368,60 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Perform Login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "E00001",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "LUMA_password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/perform_login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"perform_login"
+					]
+				}
+			},
+			"response": []
 		}
 	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "username",
+				"value": "E00001",
+				"type": "string"
+			},
+			{
+				"key": "password",
+				"value": "LUMA_password",
+				"type": "string"
+			}
+		]
+	},
 	"event": [
 		{
 			"listen": "prerequest",

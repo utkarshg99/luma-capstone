@@ -28,17 +28,17 @@ public class User {
             parameters = {
                     @org.hibernate.annotations.Parameter(name = StringPrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "U"),
                     @org.hibernate.annotations.Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d") })
-    @Column(name = "user_id")
+    @Column(name = "username")
     private String uid;
 
     @MapsId
     @OneToOne(mappedBy = "user")
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "username")
     @JsonBackReference
     private Employee eid;
 
     @JsonIgnore
-    @Column(name = "password", length = 20)
+    @Column(name = "password")
     private String password;
 
 }
