@@ -1,12 +1,13 @@
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {dataFetchServicePost} from "../service/dataFetchService";
 
 export function LoanCardDisplay(){
     let [data,setData]= useState();
     const navigate = useNavigate();
-    useEffect(()=>{dataFetchServicePost('http://localhost:8080/loans','E00001').then((res)=>{
+    useEffect(()=>{dataFetchServicePost('http://localhost:8080/loans',sessionStorage.getItem('username')).then((res)=>{
         let cardData = res.data;
+        console.log(cardData);
         let localData = []
         for(let item in cardData) {
            localData.push(<tr key={item}>
@@ -22,7 +23,7 @@ export function LoanCardDisplay(){
     })},[]);
     return(
         <div className={'container'}>
-            <h3 className={'centered m-5'}>Loan Cards Avaliled</h3>
+            <h3 className={'centered m-5'}>Loan Cards Availed</h3>
             <table className={'table table-striped table-bordered table-hover'} >
                 <thead className={'thead'}>
                 <tr>
@@ -34,7 +35,6 @@ export function LoanCardDisplay(){
                 </thead>
                 <tbody>{data}</tbody>
             </table>
-            <Link className={'btn btn-primary'} to={'/'}> Home </Link>
         </div>
     )
 }

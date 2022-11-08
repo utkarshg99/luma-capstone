@@ -1,7 +1,9 @@
 import {Link} from "react-router-dom";
+import {Header} from "./header";
 export function Dashboard(){
     return (
       <div className={'container-fluid '}>
+          <Header />
           <div className={ 'd-flex pt-3 mt-4' }>
               <div className="card me-2" style={{width: 20+"%"}} >
                   <div className="card-body">

@@ -27,6 +27,7 @@ export function LMApplication(){
 
     let disableExpression = !isValid || !watchmakeandcategory[0] || watchmakeandcategory[0]==='' || !watchmakeandcategory[1] || watchmakeandcategory[1]==='' //|| !updateCheck;
     useEffect(()=>{dataFetchServiceGet('http://localhost:8080/all/item').then((res)=>{
+        setValue('employeeid',sessionStorage.getItem('username'));
         let data = res.data.filter(val => val.status==='T');
         let localCatData = []
         let keys = []
@@ -76,7 +77,7 @@ export function LMApplication(){
                   <div className={'row'}>
                       <div className={'form-group col-6'}>
                           <label htmlFor={'employeeid'}>Employee id </label>
-                          <input className={'form-control'} placeholder={'Ex: E12345'} type={'text'} id={'employeeid'}
+                          <input className={'form-control'} placeholder={'Ex: E12345'} type={'text'} id={'employeeid'} readOnly={true}
                               {...register('employeeid',{required:"please enter a valid employeeid", minLength:6, maxLength:6})} />
                           {errors.employeeid && <small color={'red'}>{errors.employeeid.message}</small>}
                       </div>
@@ -109,7 +110,7 @@ export function LMApplication(){
                           <div className={'form-row col-12'}>
                               <label htmlFor={'itemdescription'}>Item Description</label>
                               <input className={'form-control'} placeholder={'Ex: Tea Table'} type={'text'}
-                                     id={'itemdescription'} {...register('itemdescription',{required:true})}/>
+                                     id={'itemdescription'} {...register('itemdescription',{required:true})} readOnly={true} />
                           </div>
                       </div>
                       <button className={'mt-2 btn btn-primary'} disabled={ disableExpression} type={'submit'}>Apply Loan</button>
