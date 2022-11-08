@@ -17,7 +17,7 @@ import java.util.*;
 
 @Controller
 @RequestMapping("/")
-@CrossOrigin(origins = "*", allowCredentials = "*", allowedHeaders = "*", exposedHeaders = "*")
+@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true", allowedHeaders = "*", exposedHeaders = "*")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class MainController {
 

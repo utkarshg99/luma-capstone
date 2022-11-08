@@ -68,7 +68,7 @@ public class SecurityConfiguration {
                     .anyRequest().authenticated()
                     .and()
                 .formLogin()
-                    .loginPage("/login")
+//                    .loginPage("/login")
                     .loginProcessingUrl("/perform_login")
                     .and()
                 .logout().permitAll()
