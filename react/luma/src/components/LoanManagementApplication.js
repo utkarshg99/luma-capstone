@@ -15,8 +15,8 @@ export function LMApplication(){
 
     const navigate = useNavigate();
     const onSubmit = async (data)=> {
-        let loanPromise = await addLoanService('http://localhost:8080/card_issue',getValues('employeeid'), final);
-        if(loanPromise.status === 200) navigate('/items')
+        let loanPromise = await addLoanService('http://localhost:8080/card_issue',getValues('employeeid'), final).catch(navigate('*'));
+        navigate('/items')
     }
 
     const onError = ()=>{

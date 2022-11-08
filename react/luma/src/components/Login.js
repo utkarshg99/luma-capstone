@@ -10,7 +10,7 @@ function Login() {
     let [error,setError]= useState(false);
     const onSubmit = async (data)=>{
         setError(false);
-        await loginService(createBasicAuthToken(getValues('username'),getValues('password'))).catch(setError(true));
+        await loginService(createBasicAuthToken(getValues('username'),getValues('password'))).catch(setTimeout(()=>{setError(true)},500));
         sessionStorage.setItem('Authentication',createBasicAuthToken(getValues('username'),getValues('password')));
         sessionStorage.setItem('username',getValues('username'));
         navigate('/')
