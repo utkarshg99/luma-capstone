@@ -12,3 +12,12 @@ export async function loginService(data){
         },
     });
 }
+export const createBasicAuthToken =(username, password)=> {
+    return 'Basic ' + btoa(username + ":" + password)
+}
+export const getBasicAuthToken =()=>{
+    if(!sessionStorage.getItem('Authentication')){
+        return 'Basic';
+    }
+    return sessionStorage.getItem('Authentication');
+}

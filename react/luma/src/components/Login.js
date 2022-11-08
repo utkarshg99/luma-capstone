@@ -1,16 +1,24 @@
 import React from 'react'
 import { useForm } from "react-hook-form";
-import {loginService} from "../service/loginService";
-import {redirect} from 'react-router-dom';
+import {createBasicAuthToken, loginService} from "../service/loginService";
+import {useNavigate} from 'react-router-dom';
 
 function Login() {
-    const {register, handleSubmit, formState: { errors }} = useForm();
+    sessionStorage.clear();
+    const {register, handleSubmit, getValues,formState: { errors }} = useForm();
+    const navigate = useNavigate();
     const onSubmit = async (data)=>{
-        console.log(errors);
-        console.log(data);
         let loginPromise = await loginService(data);
         console.log(loginPromise.status);
-        redirect('/')
+        console.log(getValues('username'),getValues('password'));
+        if(loginPromise.status===200){
+            sessionStorage.setItem('Authentication',createBasicAuthToken(getValues('username'),getValues('password')));
+            sessionStorage.setItem('username',getValues('username'));
+            navigate('/')
+        }
+        else{
+            navigate('*');
+        }
     }
     const validateEmpId = (value)=> value.toString().substring(0,1).toLowerCase() === 'e' && !isNaN(value.toString().substring(1));
   return (
