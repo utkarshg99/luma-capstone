@@ -17,7 +17,7 @@ import java.util.*;
 
 @Controller
 @RequestMapping("/")
-@CrossOrigin(origins = {"localhost:8080"})
+@CrossOrigin(origins = "*", allowCredentials = "*", allowedHeaders = "*", exposedHeaders = "*")
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class MainController {
 
@@ -127,8 +127,5 @@ public class MainController {
 
     @GetMapping(path="/all/user")
     public @ResponseBody Iterable<User> getAllUsers(){ return userRepository.findAll(); }
-
-//    @GetMapping(path="/login")
-//    public String login() { return "login.html"; }
 
 }
