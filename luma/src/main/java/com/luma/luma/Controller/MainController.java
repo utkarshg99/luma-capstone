@@ -100,6 +100,11 @@ public class MainController {
         return items;
     }
 
+    @GetMapping(path="/perform_login")
+    public @ResponseBody ResponseEntity<String> performLogin (){
+        return ResponseEntity.status(200).body("");
+    }
+
     @GetMapping(path="/all/card")
     public @ResponseBody Iterable<Card> getAllCards(){
         return cardRepository.findAll();

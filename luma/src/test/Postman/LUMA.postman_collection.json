@@ -371,26 +371,35 @@
 		},
 		{
 			"name": "Perform Login",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"auth": {
-					"type": "noauth"
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "username",
-							"value": "E00001",
-							"type": "text"
-						},
+					"type": "basic",
+					"basic": [
 						{
 							"key": "password",
 							"value": "LUMA_password",
-							"type": "text"
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "E00001",
+							"type": "string"
 						}
 					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
 				},
 				"url": {
 					"raw": "http://localhost:8080/perform_login",
@@ -411,13 +420,13 @@
 		"type": "basic",
 		"basic": [
 			{
-				"key": "username",
-				"value": "E00001",
+				"key": "password",
+				"value": "LUMA_password",
 				"type": "string"
 			},
 			{
-				"key": "password",
-				"value": "LUMA_password",
+				"key": "username",
+				"value": "E00001",
 				"type": "string"
 			}
 		]
