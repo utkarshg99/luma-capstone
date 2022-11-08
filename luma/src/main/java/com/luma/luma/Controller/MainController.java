@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.*;
 
 @Controller
@@ -36,7 +37,7 @@ public class MainController {
     private PasswordEncoder passwordEncoder;
 
     @PostMapping(path = "/add/employee")
-    public @ResponseBody String addNewEmployee (@RequestBody EmployeeDTO new_employee){
+    public @ResponseBody String addNewEmployee (@Valid @RequestBody EmployeeDTO new_employee){
         Employee emp = new Employee();
         emp.setName(new_employee.getName());
         emp.setDesignation(new_employee.getDesignation());
