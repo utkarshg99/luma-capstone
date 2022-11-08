@@ -8,9 +8,7 @@ function Login() {
     const {register, handleSubmit, getValues,formState: { errors }} = useForm();
     const navigate = useNavigate();
     const onSubmit = async (data)=>{
-        let loginPromise = await loginService(data);
-        console.log(loginPromise.status);
-        console.log(getValues('username'),getValues('password'));
+        let loginPromise = await loginService(createBasicAuthToken(getValues('username'),getValues('password')));
         if(loginPromise.status===200){
             sessionStorage.setItem('Authentication',createBasicAuthToken(getValues('username'),getValues('password')));
             sessionStorage.setItem('username',getValues('username'));

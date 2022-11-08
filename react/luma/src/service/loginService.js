@@ -1,15 +1,13 @@
 import axios from "axios";
 
 export async function loginService(data){
-    let bodyFormData = new FormData();
-    bodyFormData.append('username', data.username);
-    bodyFormData.append('password',data.password);
     return axios({
-        method: "post",
+        method: "get",
         url: "http://localhost:8080/process_login",
-        data: bodyFormData,
-        headers: { "Content-Type": "multipart/form-data"
-        },
+        headers: { 'Access-Control-Allow-Origin':'*'
+        ,"Access-Control-Allow-Headers": "Content-Type, Authorization, X-Requested-With",
+        "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
+        "Authorization": data },
     });
 }
 export const createBasicAuthToken =(username, password)=> {
