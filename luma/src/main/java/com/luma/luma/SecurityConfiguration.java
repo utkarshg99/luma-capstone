@@ -60,24 +60,24 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
-//        http.csrf().disable().authorizeRequests().antMatchers("/").permitAll();
-        http.cors().and().csrf().disable()
-                .authorizeRequests()
-                    .antMatchers("/resources/**").permitAll()
-                    .antMatchers("/login*").permitAll()
-                    .anyRequest().authenticated()
-                    .and()
-                .formLogin()
-                    .loginPage("/login")
-                    .loginProcessingUrl("/perform_login")
-                    .and()
-                .logout().permitAll()
-                    .clearAuthentication(true)
-                    .deleteCookies("JSESSIONID")
-                    .invalidateHttpSession(true)
-                    .logoutSuccessUrl("/login")
-                    .and()
-                .httpBasic();
+        http.csrf().disable().authorizeRequests().antMatchers("/").permitAll();
+//        http.cors().and().csrf().disable()
+//                .authorizeRequests()
+//                    .antMatchers("/resources/**").permitAll()
+//                    .antMatchers("/login*").permitAll()
+//                    .anyRequest().authenticated()
+//                    .and()
+//                .formLogin()
+//                    .loginPage("/login")
+//                    .loginProcessingUrl("/perform_login")
+//                    .and()
+//                .logout().permitAll()
+//                    .clearAuthentication(true)
+//                    .deleteCookies("JSESSIONID")
+//                    .invalidateHttpSession(true)
+//                    .logoutSuccessUrl("/login")
+//                    .and()
+//                .httpBasic();
         return http.build();
 
     }

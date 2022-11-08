@@ -3,6 +3,7 @@ package com.luma.luma.Service;
 import com.luma.luma.Controller.DTO.IssueDTO;
 import com.luma.luma.Model.*;
 import com.luma.luma.Repository.*;
+import com.luma.luma.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,8 @@ public class CreateTransaction {
     final LoanRepository loanRepository;
 
     public int createTransaction(IssueDTO new_issue) {
-        Optional<Employee> o_emp = employeeRepository.findById(new_issue.getEid());
+        Optional<Employee> o_emp = Optional.ofNullable(employeeRepository.findById(new_issue.getEid())
+                .orElseThrow(() -> new ResourceNotFoundException("Employee", "Id", new_issue.getEid())));
         if(o_emp.isEmpty()) return 1;
         Employee emp = o_emp.get();
 
