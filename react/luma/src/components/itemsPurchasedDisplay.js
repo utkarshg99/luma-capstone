@@ -1,11 +1,15 @@
 import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {dataFetchServicePost} from "../service/dataFetchService";
+import {Header} from "./header";
 
 export function ItemsPurchasedDisplay(){
     let [data,setData]= useState();
     const navigate = useNavigate();
-    useEffect(()=>{dataFetchServicePost('http://localhost:8080/items',sessionStorage.getItem('username')).then((res)=>{
+    useEffect(()=>{
+        let username = sessionStorage.getItem('username');
+        if(!username) navigate('*');
+        dataFetchServicePost('http://localhost:8080/items', username).then((res)=>{
         let cardData = res.data;
         let localData = []
         for(let item in cardData) {
@@ -23,6 +27,7 @@ export function ItemsPurchasedDisplay(){
     })},[]);
     return(
         <div className={'container'}>
+            <Header/>
             <h3 className={'centered m-5'}>Items Purchased</h3>
             <table className={'table table-striped table-bordered table-hover'} >
                 <thead className={'thead'}>

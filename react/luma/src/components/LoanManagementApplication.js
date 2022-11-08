@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import {dataFetchServiceGet} from "../service/dataFetchService";
 import {addLoanService} from "../service/dataModifyService";
 import {useNavigate} from "react-router-dom";
+import {Header} from "./header";
 
 export function LMApplication(){
     let [categoryData,setCategoryData] = useState([]);
@@ -14,10 +15,8 @@ export function LMApplication(){
 
     const navigate = useNavigate();
     const onSubmit = async (data)=> {
-        console.log(data);
-        let loanPromise = await addLoanService('http://localhost:8080/card_issue',getValues('employeeid'), final)
-        console.log(loanPromise.status);
-        navigate('/items')
+        let loanPromise = await addLoanService('http://localhost:8080/card_issue',getValues('employeeid'), final);
+        if(loanPromise.status === 200) navigate('/items')
     }
 
     const onError = ()=>{
@@ -69,6 +68,7 @@ export function LMApplication(){
 
     return (
         <div>
+            <Header />
             <div className={'header'}>
                 <h3 className={'centered mt-5'}>Loan Management Application</h3>
             </div>

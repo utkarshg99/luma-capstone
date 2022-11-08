@@ -10,14 +10,15 @@ function Login() {
     const onSubmit = async (data)=>{
         let loginPromise = await loginService(data);
         console.log(loginPromise.status);
+        console.log(getValues('username'),getValues('password'));
         if(loginPromise.status===200){
             sessionStorage.setItem('Authentication',createBasicAuthToken(getValues('username'),getValues('password')));
             sessionStorage.setItem('username',getValues('username'));
+            navigate('/')
         }
         else{
-            console.log('error');
+            navigate('*');
         }
-        navigate('/')
     }
     const validateEmpId = (value)=> value.toString().substring(0,1).toLowerCase() === 'e' && !isNaN(value.toString().substring(1));
   return (
