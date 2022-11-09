@@ -1,5 +1,6 @@
 package com.luma.luma.Service;
 
+import com.luma.luma.Controller.DTO.ItemIssueDTO;
 import com.luma.luma.Model.Card;
 import com.luma.luma.Model.Employee;
 import com.luma.luma.Model.Issue;
@@ -28,7 +29,7 @@ import static org.mockito.Mockito.when;
 class GetItemsTest {
 
     @InjectMocks
-    GetItems getItems;
+    GetIssueItems getItems;
 
     @Mock
     EmployeeRepository employeeRepository;
@@ -67,7 +68,7 @@ class GetItemsTest {
         issues.add(issue1);
         when(issueRepository.findByEid(Mockito.any(Employee.class))).thenReturn(issues);
 
-        List<Item> items = getItems.getItems("E001");
+        List<ItemIssueDTO> items = getItems.getItems("E001");
         assertThat(items).isNotNull();
         assertThat(items).hasSize(1);
     }

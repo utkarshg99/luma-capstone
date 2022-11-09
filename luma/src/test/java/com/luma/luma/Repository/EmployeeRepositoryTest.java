@@ -53,7 +53,6 @@ class EmployeeRepositoryTest {
         List<Employee> employeeList = employeeRepository.findAll();
         assertThat(employeeList).isNotNull();
         assertThat(employeeList).anyMatch(c -> c.getName().equals(employee1.getName()));
-        assertThat(employeeList).hasSize(1);
     }
 
     @Test

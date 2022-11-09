@@ -50,7 +50,6 @@ class ItemRepositoryTest {
         List<Item> itemList = itemRepository.findAll();
         assertThat(itemList).isNotNull();
         assertThat(itemList).anyMatch(c -> c.getCategory().equals(item1.getCategory()));
-        assertThat(itemList).hasSize(1);
     }
 
     @Test

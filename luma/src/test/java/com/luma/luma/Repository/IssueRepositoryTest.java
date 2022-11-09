@@ -81,8 +81,7 @@ class IssueRepositoryTest {
     public void getAllIssues(){
         List<Issue> issueList = issueRepository.findAll();
         assertThat(issueList).isNotNull();
-        assertThat(issueList).anyMatch(c -> c.getIssueDate().equals(issue1.getIssueDate()));
-        assertThat(issueList).hasSize(1);
+        assertThat(issueList).anyMatch(c -> c.getId().equals(issue1.getId()));
     }
 
     @Test
@@ -106,5 +105,6 @@ class IssueRepositoryTest {
     void findByEid() {
         List<Issue> issueList1 = issueRepository.findByEid(employee1);
         assertThat(issueList1).isNotNull();
+        assertThat(issueList1).anyMatch(c -> c.getId().equals(issue1.getId()));
     }
 }

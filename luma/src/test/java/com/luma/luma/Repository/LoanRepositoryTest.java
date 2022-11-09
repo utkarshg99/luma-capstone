@@ -47,7 +47,6 @@ class LoanRepositoryTest {
         List<Loan> loanList = loanRepository.findAll();
         assertThat(loanList).isNotNull();
         assertThat(loanList).anyMatch(c -> c.getType().equals(loan1.getType()));
-        assertThat(loanList).hasSize(1);
     }
 
     @Test
@@ -71,8 +70,7 @@ class LoanRepositoryTest {
     @Test
     void findByType() {
         List<Loan> loanList1 = loanRepository.findByType("Furniture");
-        List<Loan> loanList2 = loanRepository.findByType("Vehicle");
         assertThat(loanList1).isNotNull();
-        assertThat(loanList2).isNull();
+        assertThat(loanList1).anyMatch(c -> c.getId().equals(loan1.getId()));
     }
 }
