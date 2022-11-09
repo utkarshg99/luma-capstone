@@ -1,6 +1,12 @@
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {Header} from "./header";
+import {useEffect} from "react";
 export function Dashboard(){
+    const navigate = useNavigate();
+    useEffect(()=>{
+        if(!sessionStorage.getItem('username')) navigate('/login');
+    },[]);
+
     return (
       <div className={'container-fluid '}>
           <Header />
