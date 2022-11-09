@@ -62,7 +62,7 @@ public class SecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http.cors().and().csrf().disable()
             .authorizeRequests()
-                .antMatchers("/resources/**").permitAll()
+                .antMatchers("/static/**", "/", "/*.json", "/favicon.ico", "/*.png").permitAll()
                 .anyRequest().authenticated()
                 .and()
             .logout().permitAll()

@@ -134,4 +134,7 @@ public class MainController {
     @GetMapping(path="/all/user")
     public @ResponseBody Iterable<User> getAllUsers(){ return userRepository.findAll(); }
 
+    @GetMapping(path="/")
+    public String getBase(){ return "index.html"; }
+
 }
