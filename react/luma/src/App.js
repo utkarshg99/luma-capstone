@@ -2,11 +2,10 @@ import './App.css';
 import Login from './components/Login';
 import {LMApplication} from "./components/LoanManagementApplication";
 import {Dashboard} from "./components/Dashboard";
-import {BrowserRouter as Router, Routes, Route, useNavigate} from 'react-router-dom'
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import {LoanCardDisplay} from "./components/loanCardDisplay";
 import {ItemsPurchasedDisplay} from "./components/itemsPurchasedDisplay";
 import {Error} from "./components/error";
-import {useEffect} from "react";
 
 
 function App() {
