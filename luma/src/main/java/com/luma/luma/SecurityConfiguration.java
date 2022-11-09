@@ -44,27 +44,38 @@ public class SecurityConfiguration {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.cors().and().csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/static/**", "/", "/*.json", "/favicon.ico", "/*.png").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .logout().permitAll()
+                .clearAuthentication(true)
+                .deleteCookies("JSESSIONID")
+                .invalidateHttpSession(true)
+                .logoutSuccessUrl("/")
+                .and()
+                .httpBasic();
+
         http.csrf().disable().authorizeRequests().antMatchers("/").permitAll();
-//        http.csrf().disable()
-//                .authorizeRequests()
-//                    .antMatchers("/resources/**").permitAll()
-//                    .antMatchers("/login*").permitAll()
-//                    .anyRequest().authenticated()
-//                    .and()
-//                .formLogin().loginPage("/login")
-//                    .loginProcessingUrl("/perform_login")
-//                    .defaultSuccessUrl("/hello.html", true)
-//                    .and()
-//                .logout().permitAll()
-//                    .clearAuthentication(true)
-//                    .deleteCookies("JSESSIONID")
-//                    .invalidateHttpSession(true)
-//                    .logoutSuccessUrl("/login")
-//                    .and()
-//                .httpBasic();
+        http.csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/resources/**").permitAll()
+                .antMatchers("/login*").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin().loginPage("/login")
+                .loginProcessingUrl("/perform_login")
+                .defaultSuccessUrl("/hello.html", true)
+                .and()
+                .logout().permitAll()
+                .clearAuthentication(true)
+                .deleteCookies("JSESSIONID")
+                .invalidateHttpSession(true)
+                .logoutSuccessUrl("/login")
+                .and()
+                .httpBasic();
         return http.build();
-
     }
-
 }
