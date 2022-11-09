@@ -7,13 +7,15 @@ function Login() {
     sessionStorage.clear();
     const {register, handleSubmit, getValues,formState: { errors }} = useForm();
     const navigate = useNavigate();
-    let [error,setError]= useState(false);
+    let [error,setError]= useState({status:false,message:''});
     const onSubmit = async (data)=>{
         setError(false);
-        await loginService(createBasicAuthToken(getValues('username'),getValues('password'))).catch(setTimeout(()=>{setError(true)},500));
-        sessionStorage.setItem('Authentication',createBasicAuthToken(getValues('username'),getValues('password')));
-        sessionStorage.setItem('username',getValues('username'));
-        navigate('/')
+        let promise = await loginService(createBasicAuthToken(getValues('username'),getValues('password'))).catch((reason)=>{setError({status: true,message: "Wrong credentials contact your admin"})});
+        if(promise.status===200) {
+            sessionStorage.setItem('Authentication', createBasicAuthToken(getValues('username'), getValues('password')));
+            sessionStorage.setItem('username', getValues('username'));
+            navigate('/')
+        }
     }
     const validateEmpId = (value)=> value.toString().substring(0,1).toLowerCase() === 'e' && !isNaN(value.toString().substring(1));
   return (
@@ -23,7 +25,7 @@ function Login() {
         </div>
         <div className={'container d-flex justify-content-center w-25'} >
             <form className={'w-100'} onSubmit={handleSubmit(onSubmit)}>
-                { error && <p className={'alert alert-danger'}>Wrong Credentials contact your admin</p>}
+                { error.status && <p className={'alert alert-danger'}>{error.message}</p>}
                 <div className={'form-group'}>
                     <label htmlFor={'userid'} className={'form-label'}>User Id</label>
                     <input id={'userid'} type={"text"} placeholder={"Ex:E12345"} className={'form-control'} {...register('username',{required: 'user name is required', minLength: 6, maxLength: 6, validate: value => validateEmpId(value)})} />

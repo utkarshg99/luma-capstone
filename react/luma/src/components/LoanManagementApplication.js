@@ -15,7 +15,7 @@ export function LMApplication(){
 
     const navigate = useNavigate();
     const onSubmit = async (data)=> {
-        let loanPromise = await addLoanService('http://localhost:8080/card_issue',getValues('employeeid'), final).catch(navigate('*'));
+        await addLoanService('http://localhost:8080/card_issue',getValues('employeeid'), final);
         navigate('/items')
     }
 
@@ -26,7 +26,6 @@ export function LMApplication(){
 
     let disableExpression = !isValid || !watchmakeandcategory[0] || watchmakeandcategory[0]==='' || !watchmakeandcategory[1] || watchmakeandcategory[1]==='' //|| !updateCheck;
     useEffect(()=>{dataFetchServiceGet('http://localhost:8080/all/item').then((res)=>{
-        console.log(res.data);
         setValue('employeeid',sessionStorage.getItem('username'));
         let data = res.data.filter(val => val.status==='T');
         let localCatData = []
