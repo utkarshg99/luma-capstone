@@ -13,7 +13,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.*;
 
 @Controller
@@ -35,46 +34,6 @@ public class MainController {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
-
-    @PostMapping(path = "/add/employee")
-    public @ResponseBody String addNewEmployee (@Valid @RequestBody EmployeeDTO new_employee){
-        Employee emp = new Employee();
-        emp.setName(new_employee.getName());
-        emp.setDesignation(new_employee.getDesignation());
-        emp.setDepartment(new_employee.getDepartment());
-        emp.setDoj(new_employee.getDoj());
-        emp.setDob(new_employee.getDob());
-        emp.setGender(new_employee.getGender());
-        employeeRepository.save(emp);
-
-        User user = new User();
-        user.setEid(emp);
-        user.setPassword(passwordEncoder.encode(new_employee.getPassword()));
-        userRepository.save(user);
-
-        return "Employee Saved";
-    }
-
-    @PostMapping(path = "/add/item")
-    public @ResponseBody String addNewItem (@RequestBody ItemDTO new_item){
-        Item item = new Item();
-        item.setMake(new_item.getMake());
-        item.setCategory(new_item.getCategory());
-        item.setStatus(new_item.getStatus());
-        item.setDescription(new_item.getDescription());
-        item.setValuation(new_item.getValuation());
-        itemRepository.save(item);
-        return "Item Saved";
-    }
-
-    @PostMapping(path = "/add/loan")
-    public @ResponseBody String addNewLoan (@RequestBody LoanDTO new_loan){
-        Loan loan = new Loan();
-        loan.setType(new_loan.getType());
-        loan.setDuration(new_loan.getDuration());
-        loanRepository.save(loan);
-        return "Loan Saved";
-    }
 
     @PostMapping(path = "/card_issue")
     public @ResponseBody ResponseEntity<String> addNewIssue (@RequestBody IssueDTO new_issue){
@@ -106,21 +65,6 @@ public class MainController {
         return ResponseEntity.status(200).body("");
     }
 
-    @GetMapping(path="/all/card")
-    public @ResponseBody Iterable<Card> getAllCards(){
-        return cardRepository.findAll();
-    }
-
-    @GetMapping(path="/all/employee")
-    public @ResponseBody Iterable<Employee> getAllEmployees(){
-        return employeeRepository.findAll();
-    }
-
-    @GetMapping(path="/all/issue")
-    public @ResponseBody Iterable<Issue> getAllIssues(){
-        return issueRepository.findAll();
-    }
-
     @GetMapping(path="/all/item")
     public @ResponseBody Iterable<Item> getAllItems(){
         return itemRepository.findAll();
@@ -130,9 +74,6 @@ public class MainController {
     public @ResponseBody Iterable<Loan> getAllLoans(){
         return loanRepository.findAll();
     }
-
-    @GetMapping(path="/all/user")
-    public @ResponseBody Iterable<User> getAllUsers(){ return userRepository.findAll(); }
 
     @GetMapping(path="/")
     public String getBase(){ return "index.html"; }

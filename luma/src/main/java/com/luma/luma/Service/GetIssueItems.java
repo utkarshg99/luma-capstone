@@ -4,6 +4,7 @@ import com.luma.luma.Controller.DTO.ItemIssueDTO;
 import com.luma.luma.Model.*;
 import com.luma.luma.Repository.*;
 import com.luma.luma.ResourceNotFoundException;
+import com.luma.luma.Utility.IssueToItemIssueDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,14 +27,7 @@ public class GetIssueItems {
         List<Issue> issues = issueRepository.findByEid(emp);
         List<ItemIssueDTO> items = new ArrayList<>();
         for(Issue issue: issues){
-            ItemIssueDTO item_issue = new ItemIssueDTO();
-            item_issue.setIssue_id(issue.getId());
-            item_issue.setMake(issue.getIid().getMake());
-            item_issue.setCategory(issue.getIid().getCategory());
-            item_issue.setStatus(issue.getIid().getStatus());
-            item_issue.setDescription(issue.getIid().getDescription());
-            item_issue.setValuation(issue.getIid().getValuation());
-            items.add(item_issue);
+            items.add(IssueToItemIssueDTO.issueToItemIssueDTO(issue));
         }
         return items;
     }

@@ -69,7 +69,7 @@ public class SecurityConfiguration {
                 .clearAuthentication(true)
                 .deleteCookies("JSESSIONID")
                 .invalidateHttpSession(true)
-                .logoutSuccessUrl("/login")
+                .logoutSuccessUrl("/")
             .and()
             .httpBasic();
         return http.build();

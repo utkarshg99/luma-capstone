@@ -4,12 +4,12 @@ import com.luma.luma.Controller.DTO.IssueDTO;
 import com.luma.luma.Model.*;
 import com.luma.luma.Repository.*;
 import com.luma.luma.ResourceNotFoundException;
+import com.luma.luma.Utility.CardCreate;
+import com.luma.luma.Utility.IssueCreate;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,21 +36,9 @@ public class CreateTransaction {
         List<Loan> loans = loanRepository.findByType(item.getCategory());
         Loan loan = loans.get(0);
 
-        Issue issue = new Issue();
-        issue.setEid(emp);
-        issue.setIid(item);
-        issue.setIssueDate(Date.from(Instant.now()));
-        issueRepository.save(issue);
+        issueRepository.save(IssueCreate.issueCreate(emp, item));
+        cardRepository.save(CardCreate.cardCreate(emp, loan));
 
-        Card card = new Card();
-        CardId cardid = new CardId();
-        cardid.setEid(emp.getId());
-        cardid.setLid(loan.getId());
-        card.setCardid(cardid);
-        card.setEid(emp);
-        card.setLid(loan);
-        card.setCid(Date.from(Instant.now()));
-        cardRepository.save(card);
         return 200;
     }
 }

@@ -10,7 +10,6 @@ export function LMApplication(){
     let [makeData,setMakeData] = useState([]);
     let [itemsData,setItemsData] = useState([]);
     let [final, setFinal] = useState('');
-    // let [updateCheck, setUpdateCheck] = useState(false);
     const { register,handleSubmit, watch, setValue,getValues,resetField,formState: { errors, isValid } } = useForm({criteriaMode: 'all'});
 
     const navigate = useNavigate();
@@ -42,7 +41,6 @@ export function LMApplication(){
 
     useEffect(()=>{
         resetField('itemmake');
-        // setUpdateCheck(false);
         let presentCategory = watch('itemcategory');
         let data = itemsData.filter(val => presentCategory === val.category.toLowerCase());
         let localMakeData = []
@@ -60,11 +58,6 @@ export function LMApplication(){
         setValue('itemvalue',choice[0]?.valuation);
         setValue('itemdescription',choice[0]?.description);
     },watch(['itemmake']));
-
-    // useEffect(()=>{
-    //     setUpdateCheck(true);
-    //     console.log(final,updateCheck);
-    // },[final]);
 
     return (
         <div>
