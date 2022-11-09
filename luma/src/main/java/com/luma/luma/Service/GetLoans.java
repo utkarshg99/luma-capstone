@@ -2,6 +2,7 @@ package com.luma.luma.Service;
 
 import com.luma.luma.Model.*;
 import com.luma.luma.Repository.*;
+import com.luma.luma.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,8 @@ public class GetLoans {
     final EmployeeRepository employeeRepository;
 
     public Set<Loan> getLoans(String eid) {
-        Optional<Employee> o_emp = employeeRepository.findById(eid);
+        Optional<Employee> o_emp = Optional.ofNullable(employeeRepository.findById(eid)
+                .orElseThrow(() -> new ResourceNotFoundException("Employee", "Id", eid)));
         if(o_emp.isEmpty()) { return new HashSet<>(); }
         Employee emp = o_emp.get();
 

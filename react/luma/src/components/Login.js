@@ -1,11 +1,21 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { useForm } from "react-hook-form";
+import {createBasicAuthToken, loginService} from "../service/loginService";
+import {useNavigate} from 'react-router-dom';
 
 function Login() {
-    const {register, handleSubmit, formState: { errors }} = useForm();
-    const onSubmit = (data)=>{
-        console.log(errors);
-        console.log(data);
+    sessionStorage.clear();
+    const {register, handleSubmit, getValues,formState: { errors }} = useForm();
+    const navigate = useNavigate();
+    let [error,setError]= useState({status:false,message:''});
+    const onSubmit = async (data)=>{
+        setError(false);
+        let promise = await loginService(createBasicAuthToken(getValues('username'),getValues('password'))).catch((reason)=>{setError({status: true,message: "Wrong credentials contact your admin"})});
+        if(promise.status===200) {
+            sessionStorage.setItem('Authentication', createBasicAuthToken(getValues('username'), getValues('password')));
+            sessionStorage.setItem('username', getValues('username'));
+            navigate('/')
+        }
     }
     const validateEmpId = (value)=> value.toString().substring(0,1).toLowerCase() === 'e' && !isNaN(value.toString().substring(1));
   return (
@@ -13,8 +23,9 @@ function Login() {
         <div className={'container centered mt-5'}>
           <h1>LUMA</h1>
         </div>
-        <div className={'container d-flex justify-content-center w-25'} onSubmit={handleSubmit(onSubmit)}>
-            <form className={'w-100'}>
+        <div className={'container d-flex justify-content-center w-25'} >
+            <form className={'w-100'} onSubmit={handleSubmit(onSubmit)}>
+                { error.status && <p className={'alert alert-danger'}>{error.message}</p>}
                 <div className={'form-group'}>
                     <label htmlFor={'userid'} className={'form-label'}>User Id</label>
                     <input id={'userid'} type={"text"} placeholder={"Ex:E12345"} className={'form-control'} {...register('username',{required: 'user name is required', minLength: 6, maxLength: 6, validate: value => validateEmpId(value)})} />
